@@ -8,7 +8,7 @@
   <style>
     body {
       font-family: 'Noto Nastaliq Urdu', serif;
-      background-color: #f0f0f0;
+      background-color: #f9f9f9;
       text-align: center;
       direction: rtl;
       padding: 20px;
@@ -16,17 +16,18 @@
     }
     input, button {
       padding: 10px;
-      font-size: 1.2em;
-      margin: 10px;
+      font-size: 1.1em;
+      margin: 8px;
+      text-align: center;
     }
     #result {
-      font-size: 1.5em;
+      font-size: 1.4em;
       margin-top: 20px;
       line-height: 2em;
     }
     footer {
       margin-top: 50px;
-      font-size: 1.2em;
+      font-size: 1.1em;
       color: #555;
     }
     a {
@@ -41,8 +42,12 @@
 </head>
 <body>
   <h1>تنخواہ کیلکولیٹر</h1>
-  <label>اپنی بنیادی تنخواہ درج کریں:</label><br />
-  <input type="number" id="basic" placeholder="مثلاً: 30000" /><br />
+  <label>بنیادی تنخواہ (Basic Pay) درج کریں:</label><br />
+  <input type="number" id="basic" placeholder="مثلاً: 25200" /><br />
+
+  <label>موجودہ مجموعی تنخواہ (Gross Pay) درج کریں:</label><br />
+  <input type="number" id="gross" placeholder="مثلاً: 48200" /><br />
+
   <button onclick="calculateSalary()">کل تنخواہ معلوم کریں</button>
 
   <div id="result"></div>
@@ -57,21 +62,16 @@
   <script>
     function calculateSalary() {
       const basic = parseFloat(document.getElementById('basic').value);
-      if (isNaN(basic)) {
-        document.getElementById('result').innerHTML = "براہ کرم درست رقم درج کریں";
+      const gross = parseFloat(document.getElementById('gross').value);
+
+      if (isNaN(basic) || isNaN(gross)) {
+        document.getElementById('result').innerHTML = "براہ کرم دونوں تنخواہیں درست طریقے سے درج کریں";
         return;
       }
+
+      const adhoc = basic * 0.10;
       const dispensary = basic * 0.30;
-      const adhoc2025 = basic * 0.10;
-      const total = basic + dispensary + adhoc2025;
+      const finalTotal = gross + adhoc + dispensary;
 
       document.getElementById('result').innerHTML = `
-        بنیادی تنخواہ: ${basic.toFixed(0)} روپے<br>
-        ڈسپنسری الاؤنس (30٪): ${dispensary.toFixed(0)} روپے<br>
-        ایڈہاک 2025 (10٪): ${adhoc2025.toFixed(0)} روپے<br>
-        <strong>کل تنخواہ: ${total.toFixed(0)} روپے</strong>
-      `;
-    }
-  </script>
-</body>
-</html>
+        ✅ بنیادی
