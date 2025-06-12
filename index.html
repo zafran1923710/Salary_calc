@@ -8,44 +8,99 @@
   <style>
     body {
       font-family: 'Noto Nastaliq Urdu', serif;
-      background-color: #f9f9f9;
+      background-color: #f2f6fc;
       text-align: center;
       direction: rtl;
       padding: 20px;
-      color: #333;
+      color: #222;
     }
-    input, button {
+
+    h1 {
+      color: #005b8f;
+      font-size: 2em;
+    }
+
+    .budget-line {
+      font-size: 1.3em;
+      color: #008000;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    label {
+      font-size: 1.2em;
+      color: #7b1fa2;
+    }
+
+    input {
       padding: 10px;
       font-size: 1.1em;
       margin: 8px;
       text-align: center;
+      border: 2px solid #999;
+      border-radius: 6px;
+      width: 250px;
     }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1.1em;
+      margin-top: 10px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #388e3c;
+    }
+
     #result {
       font-size: 1.4em;
       margin-top: 20px;
       line-height: 2em;
+      background-color: #fff3cd;
+      padding: 15px;
+      border: 1px solid #ffeeba;
+      border-radius: 10px;
+      display: inline-block;
     }
+
     footer {
       margin-top: 50px;
       font-size: 1.1em;
       color: #555;
     }
+
     a {
       color: #007bff;
       text-decoration: none;
     }
+
     .whatsapp {
       color: green;
       font-weight: bold;
     }
+
+    hr {
+      border: none;
+      border-top: 2px dashed #999;
+      width: 60%;
+      margin: 10px auto;
+    }
   </style>
 </head>
 <body>
+  <div class="budget-line">💼 بجٹ 2025/26</div>
+
   <h1>تنخواہ کیلکولیٹر</h1>
+
   <label>بنیادی تنخواہ (Basic Pay) درج کریں:</label><br />
   <input type="number" id="basic" placeholder="مثلاً: 25200" /><br />
 
-  <label>موجودہ مجموعی تنخواہ (Gross Pay) درج کریں:</label><br />
+  <label>مجموعی تنخواہ (Gross Pay) درج کریں:</label><br />
   <input type="number" id="gross" placeholder="مثلاً: 48200" /><br />
 
   <button onclick="calculateSalary()">کل تنخواہ معلوم کریں</button>
@@ -74,4 +129,14 @@
       const finalTotal = gross + adhoc + dispensary;
 
       document.getElementById('result').innerHTML = `
-        ✅ بنیادی
+        ✅ بنیادی تنخواہ: <strong>${basic.toFixed(0)} روپے</strong><br>
+        ✅ مجموعی تنخواہ: <strong>${gross.toFixed(0)} روپے</strong><br>
+        ➕ ایڈہاک 2025 (10٪): <strong>${adhoc.toFixed(0)} روپے</strong><br>
+        ➕ ڈسپنسری الاؤنس (30٪): <strong>${dispensary.toFixed(0)} روپے</strong>
+        <hr>
+        <strong>💰 کل تنخواہ: ${finalTotal.toFixed(0)} روپے</strong>
+      `;
+    }
+  </script>
+</body>
+</html>
