@@ -1,58 +1,63 @@
 <!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>تنخواہ کیلکولیٹر</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Noto Nastaliq Urdu', serif;
-      background-color: #f9f9f9;
+      background-color: #f8f9fa;
       text-align: center;
-      padding: 50px;
+      direction: rtl;
+      padding: 20px;
     }
     input, button {
-      font-family: 'Noto Nastaliq Urdu', serif;
       padding: 10px;
-      font-size: 20px;
+      font-size: 1.2em;
       margin: 10px;
-      direction: rtl;
     }
-    .result {
-      font-size: 22px;
-      color: green;
+    #result {
+      font-size: 1.5em;
       margin-top: 20px;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 1em;
+      color: #555;
+    }
+    .whatsapp {
+      color: green;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
   <h1>تنخواہ کیلکولیٹر</h1>
-  <p>براہ کرم بنیادی تنخواہ درج کریں:</p>
-  <input type="number" id="basicPay" placeholder="بنیادی تنخواہ">
-  <br>
-  <button onclick="calculatePay()">حساب کریں</button>
+  <label>بنیادی تنخواہ درج کریں:</label><br />
+  <input type="number" id="basic" placeholder="مثلاً: 30000" /><br />
+  <button onclick="calculateSalary()">کل تنخواہ معلوم کریں</button>
 
-  <div class="result" id="result"></div>
+  <div id="result"></div>
+
+  <footer>
+    <p>ڈیزائن: <strong>زفران شہزاد</strong></p>
+    <p>📧 Email: <a href="mailto:alizafran078@gmail.com">alizafran078@gmail.com</a></p>
+    <p>📱 WhatsApp: <span class="whatsapp">0316-55-400-74</span></p>
+    <p><strong>✊ Proud To Kashmiri</strong></p>
+  </footer>
 
   <script>
-    function calculatePay() {
-      const basicPay = parseFloat(document.getElementById('basicPay').value);
-      if (isNaN(basicPay) || basicPay <= 0) {
-        alert("براہ کرم درست بنیادی تنخواہ درج کریں۔");
+    function calculateSalary() {
+      const basic = parseFloat(document.getElementById('basic').value);
+      if (isNaN(basic)) {
+        document.getElementById('result').innerHTML = "براہ کرم درست رقم درج کریں";
         return;
       }
+      const dispensary = basic * 0.30;
+      const adhoc2025 = basic * 0.10;
+      const total = basic + dispensary + adhoc2025;
 
-      const dispensary = basicPay * 0.30;
-      const adhoc2025 = basicPay * 0.10;
-      const total = basicPay + dispensary + adhoc2025;
-
-      document.getElementById('result').innerHTML = `
-        <p><strong>بنیادی تنخواہ:</strong> روپے ${basicPay.toFixed(0)}</p>
-        <p><strong>ڈسپنسری الاؤنس (٪30):</strong> روپے ${dispensary.toFixed(0)}</p>
-        <p><strong>ایڈہاک الاؤنس 2025 (٪10):</strong> روپے ${adhoc2025.toFixed(0)}</p>
-        <p><strong>کل تنخواہ:</strong> روپے ${total.toFixed(0)}</p>
-      `;
+      document.getElementById('result').innerHTML =
+        `کل تنخواہ: ${total.toFixed(0)} روپے<br>(ڈسپنسری: ${dispensary.toFixed(0)} روپے, ایڈہاک 2025: ${adhoc2025.toFixed(0)} روپے)`;
     }
-  </script>
-</body>
-</html>
