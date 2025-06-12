@@ -4,13 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>تنخواہ کیلکولیٹر</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Noto Nastaliq Urdu', serif;
-      background-color: #f8f9fa;
+      background-color: #f0f0f0;
       text-align: center;
       direction: rtl;
       padding: 20px;
+      color: #333;
     }
     input, button {
       padding: 10px;
@@ -20,11 +22,16 @@
     #result {
       font-size: 1.5em;
       margin-top: 20px;
+      line-height: 2em;
     }
     footer {
-      margin-top: 40px;
-      font-size: 1em;
+      margin-top: 50px;
+      font-size: 1.2em;
       color: #555;
+    }
+    a {
+      color: #007bff;
+      text-decoration: none;
     }
     .whatsapp {
       color: green;
@@ -34,17 +41,17 @@
 </head>
 <body>
   <h1>تنخواہ کیلکولیٹر</h1>
-  <label>بنیادی تنخواہ درج کریں:</label><br />
+  <label>اپنی بنیادی تنخواہ درج کریں:</label><br />
   <input type="number" id="basic" placeholder="مثلاً: 30000" /><br />
   <button onclick="calculateSalary()">کل تنخواہ معلوم کریں</button>
 
   <div id="result"></div>
 
   <footer>
-    <p>ڈیزائن: <strong>زفران شہزاد</strong></p>
-    <p>📧 Email: <a href="mailto:alizafran078@gmail.com">alizafran078@gmail.com</a></p>
-    <p>📱 WhatsApp: <span class="whatsapp">0316-55-400-74</span></p>
-    <p><strong>✊ Proud To Kashmiri</strong></p>
+    <p>ڈیزائن کردہ: <strong>زعفران شہزاد</strong></p>
+    <p>📧 ای میل: <a href="mailto:alizafran078@gmail.com">alizafran078@gmail.com</a></p>
+    <p>📱 واٹس ایپ: <span class="whatsapp">0316-55-400-74</span></p>
+    <p><strong>✊ فخر ہے کہ میں کشمیری ہوں</strong></p>
   </footer>
 
   <script>
@@ -58,6 +65,13 @@
       const adhoc2025 = basic * 0.10;
       const total = basic + dispensary + adhoc2025;
 
-      document.getElementById('result').innerHTML =
-        `کل تنخواہ: ${total.toFixed(0)} روپے<br>(ڈسپنسری: ${dispensary.toFixed(0)} روپے, ایڈہاک 2025: ${adhoc2025.toFixed(0)} روپے)`;
+      document.getElementById('result').innerHTML = `
+        بنیادی تنخواہ: ${basic.toFixed(0)} روپے<br>
+        ڈسپنسری الاؤنس (30٪): ${dispensary.toFixed(0)} روپے<br>
+        ایڈہاک 2025 (10٪): ${adhoc2025.toFixed(0)} روپے<br>
+        <strong>کل تنخواہ: ${total.toFixed(0)} روپے</strong>
+      `;
     }
+  </script>
+</body>
+</html>
