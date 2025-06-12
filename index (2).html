@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تنخواہ کیلکولیٹر</title>
+  <style>
+    body {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      background-color: #f8f9fa;
+      text-align: center;
+      direction: rtl;
+      padding: 20px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 1.2em;
+      margin: 10px;
+    }
+    #result {
+      font-size: 1.5em;
+      margin-top: 20px;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 1em;
+      color: #555;
+    }
+    .whatsapp {
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>تنخواہ کیلکولیٹر</h1>
+  <label>بنیادی تنخواہ درج کریں:</label><br />
+  <input type="number" id="basic" placeholder="مثلاً: 30000" /><br />
+  <button onclick="calculateSalary()">کل تنخواہ معلوم کریں</button>
+
+  <div id="result"></div>
+
+  <footer>
+    <p>ڈیزائن: <strong>زفران شہزاد</strong></p>
+    <p>📧 Email: <a href="mailto:alizafran078@gmail.com">alizafran078@gmail.com</a></p>
+    <p>📱 WhatsApp: <span class="whatsapp">0316-55-400-74</span></p>
+    <p><strong>✊ Proud To Kashmiri</strong></p>
+  </footer>
+
+  <script>
+    function calculateSalary() {
+      const basic = parseFloat(document.getElementById('basic').value);
+      if (isNaN(basic)) {
+        document.getElementById('result').innerHTML = "براہ کرم درست رقم درج کریں";
+        return;
+      }
+      const dispensary = basic * 0.30;
+      const adhoc2025 = basic * 0.10;
+      const total = basic + dispensary + adhoc2025;
+
+      document.getElementById('result').innerHTML =
+        `کل تنخواہ: ${total.toFixed(0)} روپے<br>(ڈسپنسری: ${dispensary.toFixed(0)} روپے, ایڈہاک 2025: ${adhoc2025.toFixed(0)} روپے)`;
+    }
